@@ -1,0 +1,34 @@
+<h1>写真アップロード</h1>
+
+<% if @photo.errors.any? %>
+  <div style="color: red;">
+    <p>入力内容にエラーがあります。</p>
+    <ul>
+      <% @photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @photo do |form| %>
+  <div>
+    <%= form.label :title, "タイトル" %><br>
+    <%= form.text_field :title, maxlength: 30, required: true %>
+  </div>
+
+  <div style="margin-top: 12px;">
+    <%= form.label :image, "画像ファイル" %><br>
+    <%= form.file_field :image, accept: "image/*" %>
+  </div>
+
+  <div style="margin-top: 12px;">
+    <%= form.submit "アップロード" %>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to "写真一覧に戻る", photos_path %>
+</p>
+
+<%= link_to "ログアウト", session_path, data: { turbo_method: :delete } %>

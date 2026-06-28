@@ -1,0 +1,27 @@
+<h1>写真一覧</h1>
+
+<p style="color: green"><%= notice %></p>
+
+<p>
+  <%= link_to "写真アップロード", new_photo_path %>
+</p>
+
+<% if @photos.any? %>
+  <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+  <% @photos.each do |photo| %>
+    <div style="margin-bottom: 24px;">
+      <% if photo.title.present? %>
+        <h2><%= photo.title %></h2>
+      <% end %>
+
+      <% if photo.image.attached? %>
+        <%= image_tag photo.image, style: "max-width: 300px; height: auto;" %>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+<% else %>
+  <p>まだ写真がありません。</p>
+<% end %>
+
+<%= link_to "ログアウト", session_path, data: { turbo_method: :delete } %>
