@@ -1,7 +1,11 @@
 <h1>写真一覧</h1>
 
+<p style="color: red"><%= alert %></p>
 <p style="color: green"><%= notice %></p>
 
+<p>
+  <%= link_to "tweet app連携", oauth_authorize_path %>
+</p>
 <p>
   <%= link_to "写真アップロード", new_photo_path %>
 </p>
@@ -16,6 +20,12 @@
 
       <% if photo.image.attached? %>
         <%= image_tag photo.image, style: "max-width: 300px; height: auto;" %>
+      <% end %>
+
+      <% if session[:access_token].present? %>
+        <p>
+          <%= link_to "ツイートする", tweet_photo_path(photo), data: { turbo_method: :post } %>
+        </p>
       <% end %>
     </div>
   <% end %>

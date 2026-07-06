@@ -1,24 +1,10 @@
-# README
+# 写真管理アプリケーション（ツイート機能付き）
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サーバー起動方法
 
-Things you may want to cover:
+以下のコマンドを実行して、サーバーを起動します。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+export OAUTH2_CLIENT_SECRET="【指定されたシークレット】"
+bin/rails server
+```
