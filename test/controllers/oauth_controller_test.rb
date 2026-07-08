@@ -43,7 +43,7 @@ class OauthControllerTest < ActionDispatch::IntegrationTest
           sess.get oauth_callback_path, params: { code: "auth-code" }
 
           sess.assert_redirected_to photos_path
-          assert_equal "oauth-token", sess.session[:access_token]
+          assert_equal "oauth-token", sess.request.session[:access_token]
           sess.follow_redirect!
           assert_match "tweet app連携が完了しました", sess.response.body
         end
@@ -58,7 +58,7 @@ class OauthControllerTest < ActionDispatch::IntegrationTest
           sess.get oauth_callback_path, params: { code: "auth-code" }
 
           sess.assert_redirected_to photos_path
-          assert_nil sess.session[:access_token]
+          assert_nil sess.request.session[:access_token]
           sess.follow_redirect!
           assert_match "アクセストークンが取得できませんでした", sess.response.body
         end
