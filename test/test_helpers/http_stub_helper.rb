@@ -1,3 +1,5 @@
+require "net/http"
+
 module HttpStubHelper
   def stub_http_response(body:, status: "200", success: true)
     response = Object.new
